@@ -1,0 +1,14 @@
+{% extends 'preloginRestaurant-layout.html' %}
+
+{% block content %}
+    <div id="container restaurant">
+        <h4 class="secondary">List of menus, prices, and contact info for {{ restaurant.name }} restaurant:</h4>
+        <ol>
+            {% for menu in restaurant_menus %}
+            <li type="1">
+                Menu: {{ menu.menu_name }},  Cost: ${{ menu.price }},  Address: {{ menu.address}},  Phone #: {{menu.phone}}
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock content %}

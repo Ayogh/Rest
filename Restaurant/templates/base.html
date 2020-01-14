@@ -1,0 +1,97 @@
+{% extends 'bootstrap/base.html' %}
+
+<!-- Start of title block -->
+{% block title %}
+    {% if tittle %}{{ title }} - Interactive Restaurant Menu App{% else %}Interactive Restaurant Menu App{% endif %}
+{% endblock %}
+<!-- End of title block -->
+
+
+    <!-- Start of navbar -->
+    {% block navbar %}
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <a class="navbar-brand title" href="{{ url_for('display_menus') }}">Restaurant App</a>
+
+            <ul class="nav navbar-nav pull-right nav-list">
+                <li><a href="{{ url_for('display_menus') }}"> Home </a></li>
+                <li><a href="{{ url_for('index') }}"> Register </a></li>
+                <li>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('logout') }}"> SignOut </a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}"> SignIn </a>
+                    {% endif %}
+                </li>
+                <li>
+                    <a href="">
+                        {%  if current_user.is_authenticated %}
+                            LoggedIn as <b style="color: deeppink">{{ current_user.username.title() }}</b>
+                        {% else %}
+                            Not LoggedIn
+                        {% endif %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {% endblock %}
+    <!-- End of navbar -->
+
+<!-- Start of body block content -->
+{% block content %}
+    <!-- Start of body block content -->
+
+    <!-- Start of flash messaging -->
+    {# flash messaging #}
+    {% for message in get_flashed_messages() %}
+        <div class="container alert alert-info">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            {{ message }}
+        </div>
+    {% endfor %}
+    <!-- End of flash messaging -->
+
+    <!-- Addition 1 -->
+    <section id="showcase">
+      <div class="container">
+          <div class="text-wrapper">
+              <div id="text">
+                  <h1>Interactive Restaurant Web App</h1>
+                  <p>
+                    This Web App allows restaurant owners and food fans/experts to advertise their restaurants and
+                    showcase some of the special menus they offer. Registered users would be able to edit, delete,
+                    and create new restaurants, menus, addresses, phone numbers and prices.
+                  </p>
+              </div>
+          </div>
+      </div>
+   </section>
+   <!-- End of Addition 1 -->
+
+    <!-- Start of block content -->
+    <div class="container">
+        {# empty block for custom content #}
+        {% block app_content %} {% endblock %}
+    </div>
+    <!-- End of block content -->
+
+    <!-- Start of footer -->
+    {% block footer %}
+    <!--
+    <footer>
+        <div class="container ftr">
+            <hr>
+            <p class="text-center small"> Restaurant App &copy;	| 2020 </p>
+        </div>
+    </footer>
+    -->
+    <footer>
+        <p>Interactive Restaurant Web App, Copyright &copy | 2020</p>
+    </footer>
+
+    {% endblock %}
+    <!-- End of footer -->
+
+{% endblock %}
+<!-- End of wrapper block -->

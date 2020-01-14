@@ -1,0 +1,24 @@
+{% extends 'prelogin-layout.html' %}
+
+{% block content %}
+<div id="container menus">
+        <div class="row">
+        {% for menu in menus %}
+            <div class="col-md-4">
+                <br>
+                <img src="../static/img/{{menu.picture}}" alt="menu-img" height="200" width="180" class="img-rounded">
+                <h4> Menu: {{ menu.menu_name }} </h4>
+                <p> Address: {{ menu.address }} </p>
+                <p> Phone: {{ menu.phone }} </p>
+                <p> Price: ${{ menu.price }} </p>
+                <p><a href="{{ url_for('display_restaurant', restaurant_id=menu.res_id) }}">Restaurant ID: {{ menu.res_id }}</a></p>
+                
+                <span class="label label-success"><a href="{{ url_for('create_menu', res_id=menu.res_id) }}" style="color: floralwhite"> create </a></span>
+                <span class="label label-primary"><a href="{{ url_for('edit_menu', menu_id=menu.id) }}" style="color: floralwhite"> edit </a></span>
+                <span class="label label-info"><a href="{{ url_for('delete_menu', menu_id=menu.id) }}" style="color: floralwhite"> delete </a></span>
+                <br><br>
+            </div>
+        {% endfor %}
+        </div>
+</div>
+{% endblock content %}

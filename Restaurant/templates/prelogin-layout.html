@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {# head #}
+    {% block head %}
+        <head>
+            <title>{% block title %}{% endblock %} - Interactive Restaurant Menu App</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="Professional & Affordable Web Designer">
+            <meta name="keywords" content="web design, web designer, professional web designer">
+            <meta name="author" content="Ayogh Agborbesong">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        </head>
+    {% endblock head %}
+
+    {# body #}
+    {% block body %}
+    <body>
+
+    <div class="wrapper">
+        {# navigation bar #}
+        {% block navbar %}
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <a class="navbar-brand title" href="{{ url_for('display_menus') }}">Restaurant App</a>
+
+                <ul class="nav navbar-nav pull-right nav-list">
+                    <li><a href="{{ url_for('display_menus') }}"> Home </a></li>
+                    <li><a href="{{ url_for('index') }}"> Register </a></li>
+                    <li>
+                        {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('logout') }}"> SignOut </a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}"> SignIn </a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        <a href="">
+                            {%  if current_user.is_authenticated %}
+                                LoggedIn as <b style="color: deeppink">{{ current_user.username.title() }}</b>
+                            {% else %}
+                                Not LoggedIn
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% endblock navbar %}
+
+        {# flash messaging #}
+        {% for message in get_flashed_messages() %}
+            <div class="container alert alert-info">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <!-- Addition 1 -->
+        <section id="showcase">
+          <div class="container">
+
+              <img src="../static/image/room.jpg" alt="image">
+
+              <div class="text-wrapper">
+                  <div id="text">
+                      <h1>Interactive Restaurant Web App</h1>
+                      <p>
+                        This Web App allows restaurant owners and food fans/experts to advertise their restaurants and
+                        showcase some of the special menus they offer. Registered users would be able to edit, delete,
+                        and create new restaurants, menus, addresses, phone numbers and prices.
+                      </p>
+                  </div>
+
+              </div>
+          </div>
+       </section>
+       <!-- End of Addition 1 -->
+
+       <div class="container">
+           {# empty block for custom content #}
+           {% block content %} {% endblock content %}
+       </div>
+
+        {# footer #}
+        {% block footer %}
+        <!--
+        <footer>
+            <div class="container ftr">
+                <hr>
+                <p class="text-center small"> Restaurant App &copy;	| 2020 </p>
+            </div>
+        </footer>
+        -->
+        <footer>
+                <p>Interactive Restaurant Web App, Copyright &copy | 2020</p>
+        </footer>
+
+        {% endblock footer %}
+
+    </div>
+
+    </body>
+
+    {% endblock body %}
+
+</html>

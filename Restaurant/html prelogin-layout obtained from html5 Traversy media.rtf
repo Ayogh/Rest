@@ -1,0 +1,119 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs24 \cf0 prelogin-layout from Traversy Media(HTML5 AND CSS)\
+
+\b0 \
+<!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <title>\{% block title %\}\{% endblock %\} - Interactive Restaurant Menu App</title>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <meta name="description" content="Professional & Affordable Web Designer">\
+    <meta name="keywords" content="web design, web designer, professional web designer">\
+    <meta name="author" content="Ayogh Agborbesong">\
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">\
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">\
+    <link rel="stylesheet" href="\{\{ url_for('static', filename='css/styles.css') \}\}">\
+</head>\
+<body>\
+    <header>\
+        <div class="container">\
+            <div id="branding">\
+                <h1>Restaurant App</h1>\
+            </div>\
+            <nav>\
+                <ul>\
+                    <li><a href="\{\{ url_for('display_menus') \}\}">Home</a></li>\
+                    <li><a href="about.html">About</a></li>\
+                    <li><a href="services.html">Services</a></li>\
+                    <li><a href="\{\{ url_for('index') \}\}"> Register </a></li>\
+                    <li>\
+                        \{% if current_user.is_authenticated %\}\
+                            <a href="\{\{ url_for('logout') \}\}"> SignOut </a>\
+                        \{% else %\}\
+                            <a href="\{\{ url_for('login') \}\}"> SignIn </a>\
+                        \{% endif %\}\
+                    </li>\
+                    <li>\
+                        <a href="">\
+                            \{%  if current_user.is_authenticated %\}\
+                                LoggedIn as <b style="color: deeppink">\{\{ current_user.username.title() \}\}</b>\
+                            \{% else %\}\
+                                Not LoggedIn\
+                            \{% endif %\}\
+                        </a>\
+                    </li>\
+                </ul>\
+            </nav>\
+        </div>\
+    </header>\
+\
+    <section id="showcase">\
+        <div class="container">\
+            <h1>Interactive Restaurant Web App</h1>\
+            <p>\
+                This Web App allows restaurant owners and food fans/experts to advertise their restaurants and\
+                showcase some of the special menus they offer. Registered users would be able to edit, delete,\
+                and create new restaurants, menus, addresses, phone numbers and prices.\
+            </p>\
+        </div>\
+    </section>\
+\
+    <!-- Flash Messaging -->\
+    \{% with messages = get_flashed_messages(with_categories=true) %\}\
+            \{% if messages %\}\
+\
+                ('category', 'messages')\
+                Category: \{\{ messages[0][0] \}\}\
+                \{\{ messages[0][1] \}\}\
+\
+            \{% endif %\}\
+        \{% endwith %\}\
+    <!-- End of Flash Messaging -->\
+\
+    \{# empty block for custom content #\}\
+    \{% block content %\} \{% endblock content %\}\
+\
+    <section id="newsletter">\
+        <div class="container">\
+            <h1>If you have any concerns, use the box below to send an email to "aayogh@yahoo.com". Thank you.</h1>\
+            <form action="">\
+                <input type="email" placeholder="Enter Email...">\
+                <button type="submit" class="button_1">Send</button>\
+            </form>\
+        </div>\
+    </section>\
+\
+\
+    <section id="boxes">\
+        <div class="container">\
+            <div class="box">\
+                <img src="../static/img-below/codonbleu.jpg" alt="codon-bleu">\
+                <h3>Codon Bleu</h3>\
+                <p>HTML5 was used in the design.</p>\
+            </div>\
+            <div class="box">\
+                <img src="../static/img-below/cat.jpg" alt="cat-encouragement">\
+                <h3>Bon Appetit</h3>\
+                <p>CSS3 styling was used in the design.</p>\
+            </div>\
+            <div class="box">\
+                <img src="../static/img-below/chefs.jpg" alt="chefs">\
+                <h3>Chefs</h3>\
+                <p>Some Graphic designing was used in the design.</p>\
+            </div>\
+        </div>\
+    </section>\
+\
+    <footer>\
+        <p>Interactive Restaurant Web App, Copyright &copy | 2020</p>\
+    </footer>\
+</body>\
+</html>\
+}
